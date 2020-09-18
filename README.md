@@ -3,5 +3,9 @@
 
 ## 기술 스텍
 - `webpack` module bundler
-- `babel` ES6 -> ES5 transpiler
+- `webpack-cli` webpack 명령 실행에 필요
+- `babel-loader` ES6 -> ES5 transpiler, @babel/core, @babel/preset-env 필요
+- `@babel/polyfill` ES6에 추가된 객체 및 객체 메서드를 쓰기 위해 필요
 - `vue` Frontend Framework
+- `css-loader` 
+- `vue-style-loader` 

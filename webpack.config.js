@@ -1,7 +1,10 @@
+const webpack = require('webpack');
+
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const VueLoaderPlugin   = require('vue-loader/lib/plugin');
+const UglifyJSPlugin    = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -38,9 +41,20 @@ module.exports = {
         test: /\.css$/,
         use: [
           'vue-style-loader',
-          'css-loader'
+          'css-loader',
+          'postcss-loader'
         ]
-      }
+      },
+
+      {
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          "css-loader",
+          "postcss-loader",
+          "sass-loader"
+        ]
+      },      
     ]
   },
 
@@ -49,7 +63,9 @@ module.exports = {
       filename: 'index.html',
       template: 'src/index.html'
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new UglifyJSPlugin()
   ]
 };
 
